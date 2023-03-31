@@ -10,8 +10,8 @@ public class TestMain {
         UserDao dao = new UserDao();
         
         User user = new User();
-        user.setId("dbdus9831");
-        user.setName("배유연1");
+        user.setId("dbdus98312");
+        user.setName("배유연12");
         user.setPassword("1234");
 
         dao.add(user);
