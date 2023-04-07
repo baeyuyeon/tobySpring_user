@@ -20,7 +20,7 @@ public class UserDaoTest {
         System.out.println("dao = " + dao);
         System.out.println("dao2 = " + dao2);
         User user = new User();
-        user.setId("dbdus984");
+        user.setId("3333");
         user.setName("배유연12");
         user.setPassword("1234");
 
