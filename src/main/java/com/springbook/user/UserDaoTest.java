@@ -1,9 +1,6 @@
 package com.springbook.user;
 
-import com.springbook.user.dao.ConnectionMaker;
-import com.springbook.user.dao.DConnectionMaker;
-import com.springbook.user.dao.DaoFactory;
-import com.springbook.user.dao.UserDao;
+import com.springbook.user.dao.*;
 import com.springbook.user.domain.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -12,13 +9,18 @@ import java.sql.SQLException;
 
 public class UserDaoTest {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        //ConnectionMaker connectionMaker = new DConnectionMaker();
-        //UserDao dao = new UserDao(connectionMaker);
+        /*UserDao dao = new OriginDaoFactory().userDao();
+        UserDao dao2 = new OriginDaoFactory().userDao();
+        System.out.println(dao);
+        System.out.println(dao2);*/
         ApplicationContext ac = new AnnotationConfigApplicationContext(DaoFactory.class);
 
         UserDao dao = ac.getBean("userDao", UserDao.class);
+        UserDao dao2 = ac.getBean("userDao", UserDao.class);
+        System.out.println("dao = " + dao);
+        System.out.println("dao2 = " + dao2);
         User user = new User();
-        user.setId("dbdus9812");
+        user.setId("dbdus984");
         user.setName("배유연12");
         user.setPassword("1234");
 

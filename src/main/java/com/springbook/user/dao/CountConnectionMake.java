@@ -1,0 +1,22 @@
+package com.springbook.user.dao;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public class CountConnectionMake implements ConnectionMaker{
+    int count = 0;
+    private ConnectionMaker realConnectionMaker;
+
+    public CountConnectionMake(ConnectionMaker realConnectionMaker) {
+        this.realConnectionMaker = realConnectionMaker;
+    }
+
+    @Override
+    public Connection makeConnection() throws ClassNotFoundException, SQLException {
+        this.count++;
+        return realConnectionMaker.makeConnection();
+    }
+    public int getCount(){
+        return this.count;
+    }
+}
