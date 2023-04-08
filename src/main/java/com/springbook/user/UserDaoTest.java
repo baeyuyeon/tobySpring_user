@@ -15,8 +15,8 @@ public class UserDaoTest {
         UserDao dao2 = new OriginDaoFactory().userDao();
         System.out.println(dao);
         System.out.println(dao2);*/
-        //ApplicationContext ac = new AnnotationConfigApplicationContext(DaoFactory.class);
-        ApplicationContext ac = new GenericXmlApplicationContext("applicationContext.xml");
+        ApplicationContext ac = new AnnotationConfigApplicationContext(DaoFactory.class);
+        //ApplicationContext ac = new GenericXmlApplicationContext("applicationContext.xml");
 
 
         UserDao dao = ac.getBean("userDao", UserDao.class);
@@ -24,7 +24,7 @@ public class UserDaoTest {
         System.out.println("dao = " + dao);
         System.out.println("dao2 = " + dao2);
         User user = new User();
-        user.setId("4444");
+        user.setId("6666");
         user.setName("배유연12");
         user.setPassword("1234");
 

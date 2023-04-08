@@ -2,24 +2,32 @@ package com.springbook.user.dao;
 
 import com.springbook.user.domain.User;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 
 public class UserDao {
     //private SimpleConnectionMaker simpleConnectionMaker;
-    ConnectionMaker connectionMaker;
+    //ConnectionMaker connectionMaker;
 
     /*public UserDao(ConnectionMaker connectionMaker) {
         //simpleConnectionMaker = new SimpleConnectionMaker();
         this.connectionMaker = connectionMaker;
     }*/
 
-    public void setConnectionMaker(ConnectionMaker connectionMaker) {
+    /*public void setConnectionMaker(ConnectionMaker connectionMaker) {
         this.connectionMaker = connectionMaker;
+    }*/
+    //datasource 를 이용한 디비 연결
+    private DataSource dataSource;
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = connectionMaker.makeConnection();
+//        Connection c = connectionMaker.makeConnection();
+        Connection c = dataSource.getConnection();
         PreparedStatement ps = c.prepareStatement("insert into users(id, name, password) values(?,?,?)");
         ps.setString(1, user.getId());
         ps.setString(2, user.getName());
@@ -32,7 +40,8 @@ public class UserDao {
     }
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Connection c = connectionMaker.makeConnection();
+//        Connection c = connectionMaker.makeConnection();
+        Connection c = dataSource.getConnection();
         PreparedStatement ps = c.prepareStatement("select * from users where id= ? ");
         ps.setString(1, id);
 
