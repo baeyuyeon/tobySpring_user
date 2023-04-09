@@ -24,7 +24,7 @@ public class UserDaoTest {
         System.out.println("dao = " + dao);
         System.out.println("dao2 = " + dao2);
         User user = new User();
-        user.setId("6666");
+        user.setId("8888");
         user.setName("배유연12");
         user.setPassword("1234");
 
@@ -33,9 +33,17 @@ public class UserDaoTest {
         System.out.println(user.getId() + " 등록 성공");
 
         User user2 = dao.get(user.getId());
-        System.out.println("user2 Name= " + user2.getName());
+        /*System.out.println("user2 Name= " + user2.getName());
         System.out.println("user2 Password= " + user2.getPassword());
 
-        System.out.println(user.getId() + " 조회 성공");
+        System.out.println(user.getId() + " 조회 성공");*/
+
+        if(!user.getName().equals(user2.getName())){
+            System.out.println("테스트 실패!! (name)");
+        }else if(!user.getPassword().equals(user2.getPassword())){
+            System.out.println("테스트 실패!! (password)");
+        }else{
+            System.out.println("조회 테스트 성공");
+        }
     }
 }

@@ -19,6 +19,15 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:5.0.8'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	//JUnit4 추가
+	/*testImplementation("org.junit.vintage:junit-vintage-engine") {
+		exclude group: "org.hamcrest", module: "hamcrest-core"
+		compile group: 'junit', name: 'junit', version: '4.8.2'
+	}*/
+	testImplementation 'junit:junit:4.13.2'
+	//compile group: 'junit', name: 'junit', version: '4.13.2'
+
 }
 
 tasks.named('test') {
