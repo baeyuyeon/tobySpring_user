@@ -11,10 +11,7 @@ import java.sql.SQLException;
 
 public class UserDaoTest {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        /*UserDao dao = new OriginDaoFactory().userDao();
-        UserDao dao2 = new OriginDaoFactory().userDao();
-        System.out.println(dao);
-        System.out.println(dao2);*/
+
         ApplicationContext ac = new AnnotationConfigApplicationContext(DaoFactory.class);
         //ApplicationContext ac = new GenericXmlApplicationContext("applicationContext.xml");
 

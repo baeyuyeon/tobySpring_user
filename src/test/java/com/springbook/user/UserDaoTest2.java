@@ -11,19 +11,22 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.springframework.jdbc.datasource.SingleConnectionDataSource;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.sql.DataSource;
 import java.sql.SQLException;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="/test-applicationContext.xml")
-public class UserDaoTest {
-    //@Autowired
-    //ApplicationContext ac;
-    @Autowired
+
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations="/test-applicationContext.xml")
+public class UserDaoTest2 {
+  //  @Autowired
     private UserDao dao;
     User user1;
     User user2;
@@ -31,8 +34,17 @@ public class UserDaoTest {
 
     @Before
     public void setUp() {
-       // System.out.println(this.ac);
-        System.out.println(this);
+        dao = new UserDao();
+        SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
+        dataSource.setDriverClass(com.mysql.jdbc.Driver.class);
+        dataSource.setUrl("jdbc:mysql://127.0.0.1:3307/testDB?characterEncoding=UTF-8");
+        dataSource.setUsername("root");
+        dataSource.setPassword("123456");
+
+                /*"jdbc:mysql://127.0.0.1:3307/testDB?characterEncoding=UTF-8",
+                "root", "123456", true);*/
+
+        dao.setDataSource(dataSource);
 
         user1 = new User("apple", "사과", "123456");
         user2 = new User("banana", "바나나", "123456");
