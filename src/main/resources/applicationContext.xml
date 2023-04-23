@@ -16,4 +16,8 @@
     <bean id="userDao" class="com.springbook.user.dao.UserDaoJdbc">
         <property name="dataSource" ref="datasource"></property>
     </bean>
+    <bean id="userService" class="com.springbook.user.service.UserService">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+
 </beans>
